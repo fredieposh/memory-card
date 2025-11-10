@@ -1,0 +1,28 @@
+.cards-container {
+    flex: 6;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-bottom: 2rem;
+    gap: 0.5rem;
+}
+
+.card {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: transform 0.5s, background-color 1s;
+}
+
+.card:hover {
+    background-color:bisque;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transform: translateY(-10%);
+}
