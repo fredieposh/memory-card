@@ -3,4 +3,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  animation: drop-in 1000ms;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.modal button{
+  background-color: antiquewhite;
+  border: 1px black solid;
+  transition: background-color 500ms;
+}
+
+.modal button:hover{
+  background-color: rgb(238, 176, 96);
+  border: 1px black solid;
+}
+
+
+
+@keyframes drop-in {
+  from {
+    transform:
+      translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform:
+      translateY(0%);
+    opacity: 1;
+  }
 }

@@ -23,10 +23,10 @@ function App() {
     const [maxScore, setMaxScore] = useState(0);
     const [clickedPokemonsArray,setClickedPokemonsArray ] = useState([]);
 
-    const showModal = false;
+    const showModal = clickedPokemonsArray.length === pokemonNames.length ? true: false;
 
-    function checkMaxscore() {
-      score > maxScore && setMaxScore(score);
+    function checkMaxscore(score) {
+      score  > maxScore && setMaxScore(score);
     }
 
     function updateScore(pokemonId) {
@@ -34,14 +34,15 @@ function App() {
 
 
       if (isPokemonWasClicked) {
-        checkMaxscore();
+        checkMaxscore(score);
         setScore(0);
         setClickedPokemonsArray([]);
         return;
       }
 
-      setScore(score + 1);
-      checkMaxscore();
+      const newScore = score + 1;
+      setScore(newScore);
+      checkMaxscore(newScore);
       setClickedPokemonsArray([...clickedPokemonsArray, pokemonId]);
     }
 
@@ -59,6 +60,14 @@ function App() {
 
       )
     }
+
+    return (
+      <div className="modal">
+        <h2>Congrats!</h2>
+        <h2>Youv'e Remembered All The Pokemons!</h2>
+        <button  onClick={() => window.location.reload()}> Restart</button>
+      </div>
+    )
 
 }
 
