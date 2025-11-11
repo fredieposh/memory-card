@@ -1,6 +1,6 @@
 import '../styles/header.css'
 
-export default function Header() {
+export default function Header({ score, maxScore }) {
     return (
         <>
         <div className='header-container'>
@@ -9,8 +9,8 @@ export default function Header() {
                 <h3>Don't click on the same picture twice to win the game!</h3>
             </div>
             <div className='info-container'>
-                <p className='score'>Score: 0</p>
-                <p className='max-score'>max Score: 0</p>
+                <p className='score'>Score: {score}</p>
+                <p className='max-score'>Max Score: {maxScore}</p>
             </div>
         </div>
         </>

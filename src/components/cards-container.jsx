@@ -1,22 +1,8 @@
 import '../styles/cards-container.css'
 import {useState, useEffect} from 'react';
 
-export default function CardsContainer() {
+export default function CardsContainer({ updateScore, pokemonNames }) {
     const [pokemonsObjArray, setPokemonsObjArray] = useState(null);
-    const pokemonNames = [
-        'ditto', 
-        'pikachu', 
-        'abra', 
-        'bulbasaur', 
-        'charmander', 
-        'squirtle', 
-        'snorlax', 
-        'rapidash',
-        'oddish',
-        'mewtwo',
-        'magikarp',
-        'geodude'
-    ]
 
     function shuffleArray() {
         const shuffeledArr = new Array(pokemonsObjArray.length).fill(null);
@@ -42,8 +28,8 @@ export default function CardsContainer() {
         };
 
         Promise.all(pokemonPromises).then(pokemonPromisesValues => {
-            pokemonPromisesValues.forEach(pokemonPromisesValue => {
-                pokemonsArray.push(pokemonPromisesValue);
+            pokemonPromisesValues.forEach((pokemonPromisesValue, index) => {
+                pokemonsArray.push({...pokemonPromisesValue, id:index,});
             });
             setPokemonsObjArray(pokemonsArray);
         });
@@ -59,6 +45,7 @@ export default function CardsContainer() {
                 key={pokemonObj.pokemonName}
                 pokemonObj={pokemonObj}
                 shuffleArray={shuffleArray}
+                updateScore={updateScore}
             />)}
         </div>
         )
@@ -71,9 +58,12 @@ export default function CardsContainer() {
     )
 };
 
-function Card({ pokemonObj, shuffleArray }) {
+function Card({ pokemonObj, shuffleArray, updateScore }) {
     return(
-        <div className='card' onClick={shuffleArray}>
+        <div className='card' onClick={() =>{
+            shuffleArray();
+            updateScore(pokemonObj.id)
+            }}>
             <div className='card-text-div'>
                 <p>{pokemonObj.pokemonName}</p>
             </div>
